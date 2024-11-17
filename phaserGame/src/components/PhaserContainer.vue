@@ -6,22 +6,22 @@
     </div>
 </template>
 
-<script setup>
-    import { ref } from "vue";
-    import { IonButton } from "@ionic/vue";
-    import { Game } from "phaser";
 
-    const showButton = ref(true)
+<script setup lang="ts">
+import { ref } from 'vue'
+import { IonButton } from '@ionic/vue';
+import { Game} from 'phaser';
 
-    function launch(){
+const showButton = ref(true)
 
-    }
+function launch() {
+}
 
-    function handleClickStart() {
-        showButton.value = false;
-        launch();
-    }
+function handleClickStart() {
+  showButton.value = false;
 
+  launch();
+}
 </script>
 
 <style scoped>

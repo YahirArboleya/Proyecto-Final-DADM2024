@@ -18,5 +18,5 @@
 
 <script setup lang="ts">
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
-import PhaserContainer from '@/components/PhaserContainer.vue';
+import PhaserContainer from '../components/PhaserContainer.vue';
 </script>
