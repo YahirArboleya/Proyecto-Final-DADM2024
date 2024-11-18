@@ -10,16 +10,16 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { IonButton } from '@ionic/vue';
-import { Game} from 'phaser';
+import { launch } from '@/game/game.js';
 
+// binds to the v-if on our button to toggle visibility
 const showButton = ref(true)
 
-function launch() {
-}
-
 function handleClickStart() {
+  // hides launch button
   showButton.value = false;
 
+  // Runs the launch function
   launch();
 }
 </script>
