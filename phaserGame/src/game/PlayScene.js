@@ -113,6 +113,46 @@ this.stars = this.physics.add.group({
     callbackScope: this,
     loop: true,
   });
+
+  // colisiones entre el jugador y las bombas.
+  this.physics.add.collider(this.stars, this.platform, function(object1, object2) {
+    const star = (object1.key === 'star') ? object1 : object2;
+    star.destroy();
+  });
+  
+  this.physics.add.collider(this.bombs, this.platform, function(object1, object2) {
+    const bomb = (object1.key === 'bomb') ? object1 : object2;
+    bomb.destroy();
+  });
+
+  //Añade superposición entre el jugador y las estrellas.
+  this.score = 0;
+this.scoreText = this.add.text(this.screenCenterX, this.gameAreaHeight + 16, 'Score: 0', { fontSize: '16px', fill: '#000' }).setOrigin(0.5, 0.5);
+
+this.physics.add.overlap(this.player, this.stars, function(object1, object2) {
+  const star = (object1.key === 'player') ? object1 : object2;
+  star.destroy();
+  this.score += 10;
+  this.scoreText.setText('Score: ' + this.score);
+}, null, this);
+
+// Añade superposición entre el jugador y las bombas.
+
+this.physics.add.overlap(this.player, this.bombs, function(object1, object2) {
+  const bomb = (object1.key === 'player') ? object1 : object2;
+  bomb.destroy();
+
+  createStarLoop.destroy();
+  createBombLoop.destroy();
+  this.physics.pause();
+
+  this.gameOverText = this.add.text(this.screenCenterX, this.screenHeight / 2, 'Game Over', { fontSize: '32px', fill: 'red' }).setOrigin(0.5, 0.5);
+
+  this.input.on('pointerup', () => {
+    this.score = 0;
+    this.scene.restart();
+  })
+}, null, this);
 }
 
 update () {
