@@ -55,5 +55,47 @@ export class PlayScene extends Scene {
       repeat: -1,
     });
   }
+// Establece la física del jugador
+this.player.body.setGravityY(300);
+this.player.setCollideWorldBounds(true);
+
+//agrega un colisionador entre el jugador y las plataforma
+this.physics.add.collider(this.player, this.platform);
+
+// controladores de eventos para entrada de flecha
+this.moveLeft = false;
+this.moveRight = false;
+
+this.leftArrow.on('pointerdown', () => {
+this.moveLeft = true;
+});
+
+this.leftArrow.on('pointerup', () => {
+this.moveLeft = false;
+});
+
+this.rightArrow.on('pointerdown', () => { 
+this.moveRight = true;
+});
+
+this.rightArrow.on('pointerup', () => {
+this.moveRight = false;
+});
+    }
+update () {
+  if (this.moveLeft && !this.moveRight) {
+    this.player.setVelocityX(0 - 200);   
+    this.player.anims.play('left', true);
+  }
+
+  else if (this.moveRight && !this.moveLeft) {
+     this.player.setVelocityX(200);    
+     this.player.anims.play('right', true);
+  }
+
+  else {
+    this.player.setVelocityX(0);
+    this.player.anims.play('turn');
+  }
 }
 }
