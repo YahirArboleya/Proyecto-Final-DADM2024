@@ -81,7 +81,40 @@ this.moveRight = true;
 this.rightArrow.on('pointerup', () => {
 this.moveRight = false;
 });
-    }
+
+// agregamos la generacion de estrellas.
+this.stars = this.physics.add.group({
+  gravityY: 300,
+ });
+ const createStar = () => {
+  const x = Math.random() * this.screenWidth;
+  const star = this.stars.create(x, 0, 'star');
+ }
+ const createStarLoop = this.time.addEvent({
+  //Número aleatorio entre 1 y 1,2 segundos.
+  delay: Math.floor(Math.random() * (1200 - 1000 + 1)) + 1000,
+  callback: createStar,
+  callbackScope: this,
+  loop: true,
+ });
+ // agregamos generacion de bombas.
+  this.bombs = this.physics.add.group({
+    gravityY: 900,
+  });
+  const createBomb = () => {
+    const x = Math.random() * this.screenWidth;
+    const bomb = this.bombs.create(x, 0, 'bomb');
+    bomb.setScale(2).refreshBody();
+  }
+  const createBombLoop = this.time.addEvent({
+    // Número aleatorio entre 4.5 y 5 segundos.
+    delay: Math.floor(Math.random() * (5000 - 4500 + 1)) + 4500,
+    callback: createBomb,
+    callbackScope: this,
+    loop: true,
+  });
+}
+
 update () {
   if (this.moveLeft && !this.moveRight) {
     this.player.setVelocityX(0 - 200);   
