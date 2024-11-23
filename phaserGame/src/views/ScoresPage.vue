@@ -5,13 +5,7 @@
         <ion-title>Tab 3</ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Tab 3</ion-title>
-        </ion-toolbar>
-      </ion-header>
-
+    <ion-content>
       <ExploreContainer name="Tab 3 page" />
     </ion-content>
   </ion-page>
