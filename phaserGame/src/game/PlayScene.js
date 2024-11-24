@@ -146,6 +146,12 @@ this.physics.add.overlap(this.player, this.bombs, function(object1, object2) {
   createBombLoop.destroy();
   this.physics.pause();
 
+  const gameEndEvent = new CustomEvent("gameEnded", {
+    detail: { score: this.score }
+ });
+
+ window.dispatchEvent(gameEndEvent);
+
   
   this.scene.stop('PlayScene')
   this.scene.start('ScoreScene',{score:this.score});

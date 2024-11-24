@@ -2,16 +2,27 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Tab 3</ion-title>
+        <ion-title>Scores</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content>
-      <ExploreContainer name="Tab 3 page" />
+      <h3 v-show="!gameScores.length">No scores yet!</h3>
+      <ion-list>
+        <ion-item v-for="(score, index) in gameScores" :key="index">
+          <ion-label>
+            <h2>Score: {{ score }} </h2>
+          </ion-label>
+        </ion-item>
+      </ion-list>
     </ion-content>
   </ion-page>
 </template>
 
 <script setup lang="ts">
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
-import ExploreContainer from '@/components/ExploreContainer.vue';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel } from '@ionic/vue';
+import { inject } from 'vue'
+import { GameScoresProvider } from '@/types'
+
+// injects gameScores array ref
+const { gameScores } = inject<GameScoresProvider>('gameScores')!;
 </script>
