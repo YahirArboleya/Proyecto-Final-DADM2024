@@ -1,5 +1,6 @@
 import { Game, AUTO, Scale } from "phaser";
 import { PlayScene } from "./PlayScene.js";
+import { ScoreScene } from "./ScoreScene.js";
 
 export function launch() {
     return new Game({
@@ -15,7 +16,7 @@ export function launch() {
       physics: {
         default: "arcade",
       },
-      scene: PlayScene,
+      scene: [PlayScene,ScoreScene]
     });
   }
   

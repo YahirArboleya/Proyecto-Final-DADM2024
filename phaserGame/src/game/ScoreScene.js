@@ -27,6 +27,11 @@ export class ScoreScene extends Scene {
             ease: 'Sine.easeInOut', // Smooth easing
             yoyo: true, // Reverse the tween on completion, creating the "pulse" effect
             repeat: -1 // Repeat forever
-        })
+        });
+
+        this.input.once('pointerdown', () => {
+        this.scene.stop('ScoreScene')
+        this.scene.start('PlayScene')
+    });
     }
   }

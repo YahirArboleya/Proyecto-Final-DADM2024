@@ -145,13 +145,13 @@ this.physics.add.overlap(this.player, this.bombs, function(object1, object2) {
   createStarLoop.destroy();
   createBombLoop.destroy();
   this.physics.pause();
+  this.score = 0;
 
-  this.gameOverText = this.add.text(this.screenCenterX, this.screenHeight / 2, 'Game Over', { fontSize: '32px', fill: 'red' }).setOrigin(0.5, 0.5);
+  
+  this.scene.stop('PlayScene')
+  this.scene.start('ScoreScene');
 
-  this.input.on('pointerup', () => {
-    this.score = 0;
-    this.scene.restart();
-  })
+ 
 }, null, this);
 }
 
